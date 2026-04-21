@@ -2019,14 +2019,33 @@ function saveEdits() {
 }
 
 // ── Contact form → mailto
-function sendEmail() {
-  const name = document.getElementById('formName').value;
-  const email = document.getElementById('formEmail').value;
-  const msg = document.getElementById('formMsg').value;
+async function sendEmail() {
+  const name = document.getElementById('formName').value.trim();
+  const email = document.getElementById('formEmail').value.trim();
+  const msg = document.getElementById('formMsg').value.trim();
   if (!name || !email || !msg) { alert('Please fill all fields.'); return; }
-  const subject = encodeURIComponent('Portfolio Contact from ' + name);
-  const body = encodeURIComponent(`Hi Atif,\n\n${msg}\n\nFrom: ${name}\nEmail: ${email}`);
-  window.open(`mailto:mdatifkalim.ds@gmail.com?subject=${subject}&body=${body}`);
+  const btn = document.querySelector('#contact .btn-primary');
+  btn.disabled = true;
+  btn.innerHTML = '⏳ Sending...';
+  try {
+    const res = await fetch('https://formspree.io/f/https://formspree.io/f/mpqkypgw', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ name, email, message: msg })
+    });
+    if (res.ok) {
+      btn.innerHTML = '✅ Message Sent!';
+      btn.style.background = '#00E5A0';
+      document.getElementById('formName').value = '';
+      document.getElementById('formEmail').value = '';
+      document.getElementById('formMsg').value = '';
+      setTimeout(() => { btn.disabled = false; btn.innerHTML = 'Send Message ✉️'; btn.style.background = ''; }, 4000);
+    } else { throw new Error('Failed'); }
+  } catch {
+    btn.disabled = false;
+    btn.innerHTML = 'Send Message ✉️';
+    alert('Something went wrong. Please try again.');
+  }
 }
 </script>
 
