@@ -1771,7 +1771,7 @@ footer span { color: var(--accent); }
 </footer>
 
 <!-- ══ EDIT BUTTON ══ -->
-<button class="edit-toggle" onclick="toggleEditPanel()">✏️ Edit Portfolio</button>
+<button class="edit-toggle" onclick="toggleEditPanel()" style="display:none;">✏️ Edit Portfolio</button>
 
 <!-- ══ EDIT PANEL ══ -->
 <div class="edit-panel" id="editPanel">
@@ -2028,7 +2028,7 @@ async function sendEmail() {
   btn.disabled = true;
   btn.innerHTML = '⏳ Sending...';
   try {
-    const res = await fetch('https://formspree.io/f/mpqkypgw', {
+    const res = await fetch('https://formspree.io/f/xnjlgdlp', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({ name, email, message: msg })
