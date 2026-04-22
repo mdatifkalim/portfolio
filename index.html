@@ -2368,7 +2368,207 @@ const DEMOS = {
       <div class="dm-insight-card"><div class="dm-insight-icon">🤖</div><div class="dm-insight-title">VBA Macros</div><div class="dm-insight-desc">Auto-generates monthly PDF report and emails it to managers with one click</div></div>
     </div>`
   } 
-};
+,banking_sql: {
+    icon:'🏦', title:'Banking Transaction Analysis', label:'🗄️ Run SQL Queries',
+    html: () => `
+    <div class="dm-kpi-row">
+      <div class="dm-kpi"><div class="dm-kpi-icon">👥</div><div class="dm-kpi-label">Total Customers</div><div class="dm-kpi-value" style="color:#00c8ff">1,000</div></div>
+      <div class="dm-kpi"><div class="dm-kpi-icon">💳</div><div class="dm-kpi-label">Total Transactions</div><div class="dm-kpi-value" style="color:#00e5a0">1,000</div></div>
+      <div class="dm-kpi"><div class="dm-kpi-icon">⚠️</div><div class="dm-kpi-label">Suspicious Txns</div><div class="dm-kpi-value" style="color:#ff6b6b">47</div></div>
+      <div class="dm-kpi"><div class="dm-kpi-icon">🏙️</div><div class="dm-kpi-label">Cities Covered</div><div class="dm-kpi-value" style="color:#a78bfa">10+</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.1rem">
+      <div class="dm-section"><div class="dm-section-hd">🏙️ City-wise Transaction Volume</div><div class="dm-section-body"><div class="dm-cat-list">
+        <div class="dm-cat-row"><div class="dm-cat-top"><div><div class="dm-cat-name">Mumbai</div><div class="dm-cat-units">Highest spend city</div></div><div class="dm-cat-rev" style="color:#00c8ff">₹18.4L</div></div><div class="dm-cat-track"><div class="dm-cat-fill" data-w="100" style="background:linear-gradient(90deg,#7b5ef8,#00c8ff)"></div></div></div>
+        <div class="dm-cat-row"><div class="dm-cat-top"><div><div class="dm-cat-name">Delhi</div><div class="dm-cat-units">2nd highest</div></div><div class="dm-cat-rev" style="color:#00c8ff">₹15.2L</div></div><div class="dm-cat-track"><div class="dm-cat-fill" data-w="82" style="background:linear-gradient(90deg,#00c8ff,#00e5a0)"></div></div></div>
+        <div class="dm-cat-row"><div class="dm-cat-top"><div><div class="dm-cat-name">Bangalore</div><div class="dm-cat-units">3rd highest</div></div><div class="dm-cat-rev" style="color:#00c8ff">₹12.8L</div></div><div class="dm-cat-track"><div class="dm-cat-fill" data-w="69" style="background:linear-gradient(90deg,#00e5a0,#a78bfa)"></div></div></div>
+        <div class="dm-cat-row"><div class="dm-cat-top"><div><div class="dm-cat-name">Hyderabad</div><div class="dm-cat-units">4th highest</div></div><div class="dm-cat-rev" style="color:#00c8ff">₹9.1L</div></div><div class="dm-cat-track"><div class="dm-cat-fill" data-w="49" style="background:linear-gradient(90deg,#a78bfa,#7b5ef8)"></div></div></div>
+      </div></div></div>
+      <div class="dm-section"><div class="dm-section-hd">🔍 Fraud & Risk Detection</div><div class="dm-section-body"><div class="dm-cat-list">
+        <div class="dm-cat-row"><div class="dm-cat-top"><div><div class="dm-cat-name">Suspicious Amount (>₹1L)</div><div class="dm-cat-units">High-value alerts</div></div><div class="dm-cat-rev" style="color:#ff6b6b">47</div></div><div class="dm-cat-track"><div class="dm-cat-fill" data-w="100" style="background:linear-gradient(90deg,#ff6b6b,#fbbf24)"></div></div></div>
+        <div class="dm-cat-row"><div class="dm-cat-top"><div><div class="dm-cat-name">Rapid Transfers (1hr)</div><div class="dm-cat-units">Potential fraud</div></div><div class="dm-cat-rev" style="color:#fbbf24">18</div></div><div class="dm-cat-track"><div class="dm-cat-fill" data-w="38" style="background:linear-gradient(90deg,#fbbf24,#ff6b6b)"></div></div></div>
+        <div class="dm-cat-row"><div class="dm-cat-top"><div><div class="dm-cat-name">Dormant Accounts</div><div class="dm-cat-units">No txn > 90 days</div></div><div class="dm-cat-rev" style="color:#a78bfa">63</div></div><div class="dm-cat-track"><div class="dm-cat-fill" data-w="57" style="background:linear-gradient(90deg,#a78bfa,#00c8ff)"></div></div></div>
+        <div class="dm-cat-row"><div class="dm-cat-top"><div><div class="dm-cat-name">Overdue Loans</div><div class="dm-cat-units">Remaining > Paid</div></div><div class="dm-cat-rev" style="color:#00e5a0">29</div></div><div class="dm-cat-track"><div class="dm-cat-fill" data-w="29" style="background:linear-gradient(90deg,#00e5a0,#7b5ef8)"></div></div></div>
+      </div></div></div>
+    </div>
+    <div class="dm-section"><div class="dm-section-hd">🗃️ Sample Records (banking_transactions.csv)</div><div class="dm-section-body"><div class="dm-table-wrap"><table class="dm-table">
+      <thead><tr><th>Customer ID</th><th>Name</th><th>City</th><th>Account Type</th><th>Txn Amount</th><th>Txn Type</th><th>Loan Status</th></tr></thead>
+      <tbody>
+        <tr><td>CUST-001</td><td class="td-bold">Aarav Sharma</td><td>Mumbai</td><td>Savings</td><td class="td-acc">₹1,24,000</td><td style="color:#ff6b6b">⚠️ Suspicious</td><td style="color:#fbbf24">Overdue</td></tr>
+        <tr><td>CUST-002</td><td class="td-bold">Priya Singh</td><td>Delhi</td><td>Current</td><td class="td-acc">₹45,500</td><td style="color:#00e5a0">Withdrawal</td><td style="color:#00e5a0">Paid</td></tr>
+        <tr><td>CUST-003</td><td class="td-bold">Rahul Mehta</td><td>Bangalore</td><td>Savings</td><td class="td-acc">₹8,200</td><td style="color:#00c8ff">Deposit</td><td style="color:#00e5a0">On Track</td></tr>
+        <tr><td>CUST-004</td><td class="td-bold">Neha Gupta</td><td>Chennai</td><td>Savings</td><td class="td-acc">₹2,15,000</td><td style="color:#ff6b6b">⚠️ Suspicious</td><td style="color:#fbbf24">Pending</td></tr>
+        <tr><td>CUST-005</td><td class="td-bold">Amir Khan</td><td>Hyderabad</td><td>Current</td><td class="td-acc">₹32,000</td><td style="color:#00c8ff">Transfer</td><td style="color:#00e5a0">Paid</td></tr>
+      </tbody>
+    </table></div></div></div>
+    <div class="dm-insights">
+      <div class="dm-insight-card"><div class="dm-insight-icon">🚨</div><div class="dm-insight-title">Fraud Detection</div><div class="dm-insight-desc">22+ SQL queries detect suspicious transactions, rapid transfers, and overdue loans</div></div>
+      <div class="dm-insight-card"><div class="dm-insight-icon">👥</div><div class="dm-insight-title">Customer Segmentation</div><div class="dm-insight-desc">Segments customers as active, dormant, multi-account, city-wise for targeting</div></div>
+      <div class="dm-insight-card"><div class="dm-insight-icon">🏦</div><div class="dm-insight-title">Loan Management</div><div class="dm-insight-desc">Tracks loan repayment, overdue detection & top loan officer performance</div></div>
+    </div>`
+  },
+
+  hospital_sql: {
+    icon:'🏥', title:'Hospital Management System', label:'🗄️ Run SQL Queries',
+    html: () => `
+    <div class="dm-kpi-row">
+      <div class="dm-kpi"><div class="dm-kpi-icon">🛏️</div><div class="dm-kpi-label">Total Patients</div><div class="dm-kpi-value" style="color:#00c8ff">500+</div></div>
+      <div class="dm-kpi"><div class="dm-kpi-icon">🏢</div><div class="dm-kpi-label">Departments</div><div class="dm-kpi-value" style="color:#00e5a0">8</div></div>
+      <div class="dm-kpi"><div class="dm-kpi-icon">💰</div><div class="dm-kpi-label">Total Revenue</div><div class="dm-kpi-value" style="color:#a78bfa">₹42.8L</div></div>
+      <div class="dm-kpi"><div class="dm-kpi-icon">⏳</div><div class="dm-kpi-label">Unpaid Bills</div><div class="dm-kpi-value" style="color:#ff6b6b">87</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.1rem">
+      <div class="dm-section"><div class="dm-section-hd">🏢 Revenue by Department</div><div class="dm-section-body"><div class="dm-cat-list">
+        <div class="dm-cat-row"><div class="dm-cat-top"><div><div class="dm-cat-name">Cardiology</div><div class="dm-cat-units">Highest revenue</div></div><div class="dm-cat-rev" style="color:#00c8ff">₹9.4L</div></div><div class="dm-cat-track"><div class="dm-cat-fill" data-w="100" style="background:linear-gradient(90deg,#7b5ef8,#00c8ff)"></div></div></div>
+        <div class="dm-cat-row"><div class="dm-cat-top"><div><div class="dm-cat-name">Orthopaedics</div><div class="dm-cat-units">2nd highest</div></div><div class="dm-cat-rev" style="color:#00c8ff">₹7.8L</div></div><div class="dm-cat-track"><div class="dm-cat-fill" data-w="83" style="background:linear-gradient(90deg,#00c8ff,#00e5a0)"></div></div></div>
+        <div class="dm-cat-row"><div class="dm-cat-top"><div><div class="dm-cat-name">Neurology</div><div class="dm-cat-units">3rd highest</div></div><div class="dm-cat-rev" style="color:#00c8ff">₹6.2L</div></div><div class="dm-cat-track"><div class="dm-cat-fill" data-w="66" style="background:linear-gradient(90deg,#00e5a0,#a78bfa)"></div></div></div>
+        <div class="dm-cat-row"><div class="dm-cat-top"><div><div class="dm-cat-name">General Medicine</div><div class="dm-cat-units">Most patients</div></div><div class="dm-cat-rev" style="color:#00c8ff">₹5.1L</div></div><div class="dm-cat-track"><div class="dm-cat-fill" data-w="54" style="background:linear-gradient(90deg,#a78bfa,#fbbf24)"></div></div></div>
+      </div></div></div>
+      <div class="dm-section"><div class="dm-section-hd">💳 Payment Status</div><div class="dm-section-body"><div class="dm-cat-list">
+        <div class="dm-cat-row"><div class="dm-cat-top"><div><div class="dm-cat-name">Paid</div><div class="dm-cat-units">Fully settled</div></div><div class="dm-cat-rev" style="color:#00e5a0">312</div></div><div class="dm-cat-track"><div class="dm-cat-fill" data-w="100" style="background:linear-gradient(90deg,#00e5a0,#00c8ff)"></div></div></div>
+        <div class="dm-cat-row"><div class="dm-cat-top"><div><div class="dm-cat-name">Pending</div><div class="dm-cat-units">Awaiting payment</div></div><div class="dm-cat-rev" style="color:#fbbf24">87</div></div><div class="dm-cat-track"><div class="dm-cat-fill" data-w="28" style="background:linear-gradient(90deg,#fbbf24,#ff6b6b)"></div></div></div>
+        <div class="dm-cat-row"><div class="dm-cat-top"><div><div class="dm-cat-name">Insurance Covered</div><div class="dm-cat-units">Via insurance</div></div><div class="dm-cat-rev" style="color:#a78bfa">101</div></div><div class="dm-cat-track"><div class="dm-cat-fill" data-w="32" style="background:linear-gradient(90deg,#a78bfa,#7b5ef8)"></div></div></div>
+      </div></div></div>
+    </div>
+    <div class="dm-section"><div class="dm-section-hd">🗃️ Sample Records (Hospital_Management_System.csv)</div><div class="dm-section-body"><div class="dm-table-wrap"><table class="dm-table">
+      <thead><tr><th>Patient ID</th><th>Name</th><th>Age</th><th>Department</th><th>Doctor</th><th>Bill (₹)</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>PAT-001</td><td class="td-bold">Ramesh Kumar</td><td>54</td><td>Cardiology</td><td>Dr. Sharma</td><td class="td-acc">₹48,000</td><td style="color:#00e5a0">✅ Paid</td></tr>
+        <tr><td>PAT-002</td><td class="td-bold">Sunita Devi</td><td>38</td><td>General Med</td><td>Dr. Verma</td><td class="td-acc">₹12,500</td><td style="color:#fbbf24">⏳ Pending</td></tr>
+        <tr><td>PAT-003</td><td class="td-bold">Vikram Singh</td><td>62</td><td>Neurology</td><td>Dr. Patel</td><td class="td-acc">₹75,000</td><td style="color:#a78bfa">🛡️ Insurance</td></tr>
+        <tr><td>PAT-004</td><td class="td-bold">Anita Joshi</td><td>29</td><td>Orthopaedics</td><td>Dr. Gupta</td><td class="td-acc">₹35,200</td><td style="color:#00e5a0">✅ Paid</td></tr>
+        <tr><td>PAT-005</td><td class="td-bold">Mohan Lal</td><td>71</td><td>Cardiology</td><td>Dr. Sharma</td><td class="td-acc">₹92,000</td><td style="color:#ff6b6b">⚠️ Unpaid</td></tr>
+      </tbody>
+    </table></div></div></div>
+    <div class="dm-insights">
+      <div class="dm-insight-card"><div class="dm-insight-icon">🏥</div><div class="dm-insight-title">Operational Analytics</div><div class="dm-insight-desc">Room occupancy, daily admissions, doctor workload & dept-wise patient volume</div></div>
+      <div class="dm-insight-card"><div class="dm-insight-icon">💰</div><div class="dm-insight-title">Financial Reporting</div><div class="dm-insight-desc">Total & dept revenue, avg bill by gender, per-patient revenue & payment collection</div></div>
+      <div class="dm-insight-card"><div class="dm-insight-icon">🔬</div><div class="dm-insight-title">Clinical Insights</div><div class="dm-insight-desc">Most common diagnoses, avg stay duration per dept, treatment frequency analysis</div></div>
+    </div>`
+  },
+
+  movie_sql: {
+    icon:'🎬', title:'Movie Streaming Analysis', label:'🗄️ Run SQL Queries',
+    html: () => `
+    <div class="dm-kpi-row">
+      <div class="dm-kpi"><div class="dm-kpi-icon">👤</div><div class="dm-kpi-label">Total Users</div><div class="dm-kpi-value" style="color:#00c8ff">1,000</div></div>
+      <div class="dm-kpi"><div class="dm-kpi-icon">🎥</div><div class="dm-kpi-label">Titles Tracked</div><div class="dm-kpi-value" style="color:#00e5a0">200+</div></div>
+      <div class="dm-kpi"><div class="dm-kpi-icon">⏱️</div><div class="dm-kpi-label">Avg Watch Time</div><div class="dm-kpi-value" style="color:#a78bfa">87 min</div></div>
+      <div class="dm-kpi"><div class="dm-kpi-icon">⭐</div><div class="dm-kpi-label">Avg Rating</div><div class="dm-kpi-value" style="color:#fbbf24">4.1 / 5</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.1rem">
+      <div class="dm-section"><div class="dm-section-hd">🏆 Top Genres by Watch Time</div><div class="dm-section-body"><div class="dm-cat-list">
+        <div class="dm-cat-row"><div class="dm-cat-top"><div><div class="dm-cat-name">Action</div><div class="dm-cat-units">Most watched</div></div><div class="dm-cat-rev" style="color:#00c8ff">28,400 hrs</div></div><div class="dm-cat-track"><div class="dm-cat-fill" data-w="100" style="background:linear-gradient(90deg,#7b5ef8,#00c8ff)"></div></div></div>
+        <div class="dm-cat-row"><div class="dm-cat-top"><div><div class="dm-cat-name">Drama</div><div class="dm-cat-units">2nd most</div></div><div class="dm-cat-rev" style="color:#00c8ff">22,150 hrs</div></div><div class="dm-cat-track"><div class="dm-cat-fill" data-w="78" style="background:linear-gradient(90deg,#00c8ff,#00e5a0)"></div></div></div>
+        <div class="dm-cat-row"><div class="dm-cat-top"><div><div class="dm-cat-name">Comedy</div><div class="dm-cat-units">3rd most</div></div><div class="dm-cat-rev" style="color:#00c8ff">18,600 hrs</div></div><div class="dm-cat-track"><div class="dm-cat-fill" data-w="65" style="background:linear-gradient(90deg,#00e5a0,#a78bfa)"></div></div></div>
+        <div class="dm-cat-row"><div class="dm-cat-top"><div><div class="dm-cat-name">Thriller</div><div class="dm-cat-units">High completion rate</div></div><div class="dm-cat-rev" style="color:#00c8ff">14,200 hrs</div></div><div class="dm-cat-track"><div class="dm-cat-fill" data-w="50" style="background:linear-gradient(90deg,#a78bfa,#7b5ef8)"></div></div></div>
+      </div></div></div>
+      <div class="dm-section"><div class="dm-section-hd">📱 Device Usage</div><div class="dm-section-body"><div class="dm-cat-list">
+        <div class="dm-cat-row"><div class="dm-cat-top"><div><div class="dm-cat-name">Smart TV</div><div class="dm-cat-units">Longest sessions</div></div><div class="dm-cat-rev" style="color:#00e5a0">38%</div></div><div class="dm-cat-track"><div class="dm-cat-fill" data-w="100" style="background:linear-gradient(90deg,#00e5a0,#00c8ff)"></div></div></div>
+        <div class="dm-cat-row"><div class="dm-cat-top"><div><div class="dm-cat-name">Mobile</div><div class="dm-cat-units">Most sessions/day</div></div><div class="dm-cat-rev" style="color:#00e5a0">34%</div></div><div class="dm-cat-track"><div class="dm-cat-fill" data-w="89" style="background:linear-gradient(90deg,#00c8ff,#a78bfa)"></div></div></div>
+        <div class="dm-cat-row"><div class="dm-cat-top"><div><div class="dm-cat-name">Laptop</div><div class="dm-cat-units">Mid-length sessions</div></div><div class="dm-cat-rev" style="color:#00e5a0">18%</div></div><div class="dm-cat-track"><div class="dm-cat-fill" data-w="47" style="background:linear-gradient(90deg,#a78bfa,#7b5ef8)"></div></div></div>
+        <div class="dm-cat-row"><div class="dm-cat-top"><div><div class="dm-cat-name">Tablet</div><div class="dm-cat-units">Weekend peak</div></div><div class="dm-cat-rev" style="color:#00e5a0">10%</div></div><div class="dm-cat-track"><div class="dm-cat-fill" data-w="26" style="background:linear-gradient(90deg,#fbbf24,#ff6b6b)"></div></div></div>
+      </div></div></div>
+    </div>
+    <div class="dm-section"><div class="dm-section-hd">🗃️ Sample Records (movie_streaming.csv)</div><div class="dm-section-body"><div class="dm-table-wrap"><table class="dm-table">
+      <thead><tr><th>User ID</th><th>Title</th><th>Genre</th><th>Device</th><th>Watch Time</th><th>Completion</th><th>Rating</th></tr></thead>
+      <tbody>
+        <tr><td>USR-001</td><td class="td-bold">Dark Knight</td><td>Action</td><td>Smart TV</td><td class="td-acc">142 min</td><td style="color:#00e5a0">100%</td><td style="color:#fbbf24">⭐ 5.0</td></tr>
+        <tr><td>USR-002</td><td class="td-bold">Inception</td><td>Thriller</td><td>Laptop</td><td class="td-acc">90 min</td><td style="color:#fbbf24">62%</td><td style="color:#fbbf24">⭐ 4.5</td></tr>
+        <tr><td>USR-003</td><td class="td-bold">Friends S01</td><td>Comedy</td><td>Mobile</td><td class="td-acc">22 min</td><td style="color:#00e5a0">100%</td><td style="color:#fbbf24">⭐ 4.8</td></tr>
+        <tr><td>USR-004</td><td class="td-bold">Money Heist</td><td>Drama</td><td>Smart TV</td><td class="td-acc">55 min</td><td style="color:#ff6b6b">38%</td><td style="color:#fbbf24">⭐ 3.9</td></tr>
+        <tr><td>USR-005</td><td class="td-bold">Avengers</td><td>Action</td><td>Tablet</td><td class="td-acc">181 min</td><td style="color:#00e5a0">100%</td><td style="color:#fbbf24">⭐ 4.7</td></tr>
+      </tbody>
+    </table></div></div></div>
+    <div class="dm-insights">
+      <div class="dm-insight-card"><div class="dm-insight-icon">📈</div><div class="dm-insight-title">Engagement Analytics</div><div class="dm-insight-desc">Completion rate, avg watch time, ratings per user, genre, and subscription type</div></div>
+      <div class="dm-insight-card"><div class="dm-insight-icon">🌍</div><div class="dm-insight-title">Regional Trends</div><div class="dm-insight-desc">Region-wise and daily viewing patterns to identify peak hours & trending titles</div></div>
+      <div class="dm-insight-card"><div class="dm-insight-icon">🔔</div><div class="dm-insight-title">Retention Campaigns</div><div class="dm-insight-desc">Detects inactive users (no watch > 30 days) for re-engagement targeting</div></div>
+    </div>`
+  },
+
+  qr_code: {
+    icon:'📱', title:'QR Code Generator', label:'📱 Generate New QR',
+    html: () => `
+    <div class="dm-kpi-row">
+      <div class="dm-kpi"><div class="dm-kpi-icon">🔗</div><div class="dm-kpi-label">Input Types</div><div class="dm-kpi-value" style="color:#00c8ff">3</div></div>
+      <div class="dm-kpi"><div class="dm-kpi-icon">⚡</div><div class="dm-kpi-label">Generation Speed</div><div class="dm-kpi-value" style="color:#00e5a0">&lt; 1 sec</div></div>
+      <div class="dm-kpi"><div class="dm-kpi-icon">🖼️</div><div class="dm-kpi-label">Output Format</div><div class="dm-kpi-value" style="color:#a78bfa">PNG</div></div>
+      <div class="dm-kpi"><div class="dm-kpi-icon">🎨</div><div class="dm-kpi-label">Interface</div><div class="dm-kpi-value" style="color:#fbbf24">Tkinter GUI</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.1rem">
+      <div class="dm-section"><div class="dm-section-hd">🔧 Supported Input Types</div><div class="dm-section-body"><div class="dm-cat-list">
+        <div class="dm-cat-row"><div class="dm-cat-top"><div><div class="dm-cat-name">URL / Website Link</div><div class="dm-cat-units">e.g. https://github.com/mdatifkalim</div></div><div class="dm-cat-rev" style="color:#00e5a0">✅</div></div><div class="dm-cat-track"><div class="dm-cat-fill" data-w="100" style="background:linear-gradient(90deg,#00e5a0,#00c8ff)"></div></div></div>
+        <div class="dm-cat-row"><div class="dm-cat-top"><div><div class="dm-cat-name">Plain Text</div><div class="dm-cat-units">Any custom message</div></div><div class="dm-cat-rev" style="color:#00e5a0">✅</div></div><div class="dm-cat-track"><div class="dm-cat-fill" data-w="100" style="background:linear-gradient(90deg,#00c8ff,#a78bfa)"></div></div></div>
+        <div class="dm-cat-row"><div class="dm-cat-top"><div><div class="dm-cat-name">UPI Payment ID</div><div class="dm-cat-units">e.g. user@upi</div></div><div class="dm-cat-rev" style="color:#00e5a0">✅</div></div><div class="dm-cat-track"><div class="dm-cat-fill" data-w="100" style="background:linear-gradient(90deg,#a78bfa,#7b5ef8)"></div></div></div>
+      </div></div></div>
+      <div class="dm-section"><div class="dm-section-hd">⚙️ Tech Stack</div><div class="dm-section-body"><div class="dm-cat-list">
+        <div class="dm-cat-row"><div class="dm-cat-top"><div><div class="dm-cat-name">qrcode library</div><div class="dm-cat-units">QR generation engine</div></div><div class="dm-cat-rev" style="color:#00c8ff">Core</div></div><div class="dm-cat-track"><div class="dm-cat-fill" data-w="100" style="background:linear-gradient(90deg,#7b5ef8,#00c8ff)"></div></div></div>
+        <div class="dm-cat-row"><div class="dm-cat-top"><div><div class="dm-cat-name">Tkinter</div><div class="dm-cat-units">GUI interface</div></div><div class="dm-cat-rev" style="color:#00c8ff">GUI</div></div><div class="dm-cat-track"><div class="dm-cat-fill" data-w="80" style="background:linear-gradient(90deg,#00c8ff,#00e5a0)"></div></div></div>
+        <div class="dm-cat-row"><div class="dm-cat-top"><div><div class="dm-cat-name">Pillow (PIL)</div><div class="dm-cat-units">Save image as PNG</div></div><div class="dm-cat-rev" style="color:#00c8ff">Image</div></div><div class="dm-cat-track"><div class="dm-cat-fill" data-w="70" style="background:linear-gradient(90deg,#00e5a0,#a78bfa)"></div></div></div>
+      </div></div></div>
+    </div>
+    <div class="dm-section"><div class="dm-section-hd">🖥️ How It Works — Step by Step</div><div class="dm-section-body"><div class="dm-table-wrap"><table class="dm-table">
+      <thead><tr><th>Step</th><th>Action</th><th>Description</th><th>Result</th></tr></thead>
+      <tbody>
+        <tr><td class="td-bold">1</td><td>Launch</td><td>Run <span style="color:#00c8ff;font-family:monospace">python "QR Code.py"</span></td><td style="color:#00e5a0">Tkinter window opens</td></tr>
+        <tr><td class="td-bold">2</td><td>Enter Input</td><td>Type URL, text, or UPI ID</td><td style="color:#00e5a0">Input captured</td></tr>
+        <tr><td class="td-bold">3</td><td>Generate</td><td>Click Generate QR button</td><td style="color:#a78bfa">QR rendered instantly</td></tr>
+        <tr><td class="td-bold">4</td><td>Preview</td><td>QR displayed live in GUI</td><td style="color:#00c8ff">Visual preview shown</td></tr>
+        <tr><td class="td-bold">5</td><td>Save</td><td>Click Save — stored as .png</td><td style="color:#fbbf24">QR image downloaded</td></tr>
+      </tbody>
+    </table></div></div></div>
+    <div class="dm-insights">
+      <div class="dm-insight-card"><div class="dm-insight-icon">🚀</div><div class="dm-insight-title">Fast & Lightweight</div><div class="dm-insight-desc">Generates any QR code in under 1 second with minimal dependencies</div></div>
+      <div class="dm-insight-card"><div class="dm-insight-icon">🖥️</div><div class="dm-insight-title">Desktop GUI</div><div class="dm-insight-desc">User-friendly Tkinter interface — no command-line knowledge needed</div></div>
+      <div class="dm-insight-card"><div class="dm-insight-icon">💾</div><div class="dm-insight-title">PNG Export</div><div class="dm-insight-desc">Save QR codes as high-quality .png files ready for sharing or printing</div></div>
+    </div>`
+  },
+
+  chatbot: {
+    icon:'🤖', title:'Gemini AI Chatbot', label:'🤖 New Conversation',
+    html: () => `
+    <div class="dm-kpi-row">
+      <div class="dm-kpi"><div class="dm-kpi-icon">🧠</div><div class="dm-kpi-label">AI Model</div><div class="dm-kpi-value" style="color:#00c8ff;font-size:.85rem">Gemini 1.5 Flash</div></div>
+      <div class="dm-kpi"><div class="dm-kpi-icon">⚡</div><div class="dm-kpi-label">Response Time</div><div class="dm-kpi-value" style="color:#00e5a0">&lt; 2 sec</div></div>
+      <div class="dm-kpi"><div class="dm-kpi-icon">🔄</div><div class="dm-kpi-label">Session Type</div><div class="dm-kpi-value" style="color:#a78bfa">Multi-turn</div></div>
+      <div class="dm-kpi"><div class="dm-kpi-icon">🖥️</div><div class="dm-kpi-label">Interface</div><div class="dm-kpi-value" style="color:#fbbf24">CLI</div></div>
+    </div>
+    <div class="dm-section"><div class="dm-section-hd">💬 Sample Conversation Preview</div><div class="dm-section-body">
+      <div style="display:flex;flex-direction:column;gap:0.75rem;padding:0.5rem 0">
+        <div style="display:flex;gap:0.75rem;align-items:flex-start">
+          <div style="background:rgba(0,200,255,0.12);border:1px solid rgba(0,200,255,0.25);border-radius:8px;padding:0.3rem 0.7rem;font-size:0.75rem;color:#00c8ff;font-weight:700;white-space:nowrap;font-family:var(--font-mono)">YOU</div>
+          <div style="background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:10px;padding:0.6rem 0.9rem;font-size:0.85rem;color:var(--text);flex:1">What is machine learning?</div>
+        </div>
+        <div style="display:flex;gap:0.75rem;align-items:flex-start">
+          <div style="background:rgba(123,94,248,0.15);border:1px solid rgba(123,94,248,0.3);border-radius:8px;padding:0.3rem 0.7rem;font-size:0.75rem;color:#a78bfa;font-weight:700;white-space:nowrap;font-family:var(--font-mono)">GEMINI</div>
+          <div style="background:rgba(123,94,248,0.05);border:1px solid rgba(123,94,248,0.2);border-radius:10px;padding:0.6rem 0.9rem;font-size:0.85rem;color:var(--text);flex:1">Machine learning is a branch of AI where systems learn from data to make decisions without being explicitly programmed...</div>
+        </div>
+        <div style="display:flex;gap:0.75rem;align-items:flex-start">
+          <div style="background:rgba(0,200,255,0.12);border:1px solid rgba(0,200,255,0.25);border-radius:8px;padding:0.3rem 0.7rem;font-size:0.75rem;color:#00c8ff;font-weight:700;white-space:nowrap;font-family:var(--font-mono)">YOU</div>
+          <div style="background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:10px;padding:0.6rem 0.9rem;font-size:0.85rem;color:var(--text);flex:1">Give me a Python example of linear regression.</div>
+        </div>
+        <div style="display:flex;gap:0.75rem;align-items:flex-start">
+          <div style="background:rgba(123,94,248,0.15);border:1px solid rgba(123,94,248,0.3);border-radius:8px;padding:0.3rem 0.7rem;font-size:0.75rem;color:#a78bfa;font-weight:700;white-space:nowrap;font-family:var(--font-mono)">GEMINI</div>
+          <div style="background:rgba(123,94,248,0.05);border:1px solid rgba(123,94,248,0.2);border-radius:10px;padding:0.6rem 0.9rem;font-size:0.85rem;color:var(--text);flex:1"><span style="color:#00c8ff;font-family:monospace">from sklearn.linear_model import LinearRegression</span> — fit on training data, call predict() on test data. Here is a full example...</div>
+        </div>
+      </div>
+    </div></div>
+    <div class="dm-section"><div class="dm-section-hd">⚙️ Technical Architecture</div><div class="dm-section-body"><div class="dm-table-wrap"><table class="dm-table">
+      <thead><tr><th>Component</th><th>Technology</th><th>Role</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td class="td-bold">AI Engine</td><td style="color:#a78bfa">Gemini 1.5 Flash</td><td>Generates intelligent responses</td><td style="color:#00e5a0">✅ Active</td></tr>
+        <tr><td class="td-bold">API Layer</td><td style="color:#00c8ff">google-generativeai</td><td>Python SDK for Gemini API calls</td><td style="color:#00e5a0">✅ Active</td></tr>
+        <tr><td class="td-bold">Interface</td><td style="color:#fbbf24">Python CLI</td><td>Terminal-based user interaction</td><td style="color:#00e5a0">✅ Active</td></tr>
+        <tr><td class="td-bold">Session</td><td style="color:#a78bfa">Multi-turn Loop</td><td>Continuous chat until user types exit</td><td style="color:#00e5a0">✅ Active</td></tr>
+      </tbody>
+    </table></div></div></div>
+    <div class="dm-insights">
+      <div class="dm-insight-card"><div class="dm-insight-icon">🧠</div><div class="dm-insight-title">Gemini 1.5 Flash</div><div class="dm-insight-desc">Powered by Google's latest model — fast, accurate, and context-aware responses</div></div>
+      <div class="dm-insight-card"><div class="dm-insight-icon">🔄</div><div class="dm-insight-title">Multi-turn Chat</div><div class="dm-insight-desc">Maintains conversation context across turns — chat naturally until you type exit</div></div>
+      <div class="dm-insight-card"><div class="dm-insight-icon">🔑</div><div class="dm-insight-title">API Integration</div><div class="dm-insight-desc">Uses google-generativeai Python SDK with secure API key via environment variables</div></div>
+    </div>`
+  }};
 
 let currentDemo = null;
 
